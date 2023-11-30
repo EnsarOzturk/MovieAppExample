@@ -13,7 +13,10 @@ class NetworkManager {
         AF.request(item.url, method: item.method, headers: item.header).responseData { response in
             switch response.result {
             case .success(let data):
-                print(response)
+                print("###### Request cURL; \n\n \(response.request?.cURL() ?? "") ######\n\n")
+                
+                print("###### Response json \(item.path) ######\n")
+                data.printJson()
                 let response = try! JSONDecoder().decode(T.self, from: data)
                 completion(.success(response))
             case .failure(let error):
