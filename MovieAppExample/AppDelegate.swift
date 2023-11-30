@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        if let apiKey = Bundle.main.object(forInfoDictionaryKey: "MOVIE_DB_TOKEN") as? String {
+        if let apiKey = Bundle.main.infoDictionary?["MovieDBToken"] as? String {
             MOVIE_DB_TOKEN = apiKey
         }
         

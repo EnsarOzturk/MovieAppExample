@@ -14,7 +14,6 @@ protocol Endpoint {
     var method: HTTPMethod { get }
     var header: HTTPHeaders { get }
 }
-
 extension Endpoint {
     var baseUrl: String {
         return "https://api.themoviedb.org/3"

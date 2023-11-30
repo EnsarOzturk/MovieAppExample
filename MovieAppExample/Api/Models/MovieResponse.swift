@@ -54,5 +54,10 @@ enum OriginalLanguage: String, Codable {
     case en = "en"
     case es = "es"
     case fi = "fi"
+    case unknown
+    
+    public init(from decoder: Decoder) throws {
+        self = try OriginalLanguage(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
+    }
 }
 
