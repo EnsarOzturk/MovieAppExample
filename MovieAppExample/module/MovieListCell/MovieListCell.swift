@@ -17,16 +17,18 @@ class MovieListCell: UICollectionViewCell {
     func configure(movie: Movie) {
        imageView.load(url: imageBaseUrl + (movie.posterPath ?? "") )
        label.text = movie.originalTitle
-       layer.borderWidth = 0.5
-       layer.borderColor = UIColor.systemGray4.cgColor
+
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        label.contentMode = .center
+       
     }
     
-    
-
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.systemGray4.cgColor
+        label.contentMode = .center
+    }
 }

@@ -8,12 +8,14 @@
 import UIKit
 
 class MovieListVC: UIViewController {
+    
     @IBOutlet weak var collectionView: UICollectionView!
-    var networkManager = NetworkManager()
-    var movies: [Movie] = []
+    private let networkManager = NetworkManager()
+    private var movies: [Movie] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
 
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -31,9 +33,7 @@ class MovieListVC: UIViewController {
                         self.collectionView.reloadData()
                     }
                 }
-             
-            case .failure(let error):
-                    print(error)
+            case .failure(let error): print(error)
             }
         }
     }
@@ -48,7 +48,6 @@ extension MovieListVC: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListCell.identifier, for: indexPath) as! MovieListCell
         let movie = movies[indexPath.row]
         cell.configure(movie: movie)
-        
         return cell
     }
 }
@@ -57,7 +56,6 @@ extension MovieListVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (UIScreen.main.bounds.width - 48) / 2
         let height = width / 2 * 3
-        
         return CGSize(width: width, height: height)
     }
     
@@ -65,5 +63,17 @@ extension MovieListVC: UICollectionViewDelegateFlowLayout {
         return 16
     }
 }
+
+extension MovieListVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedMovie = movies[indexPath.row].id
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "MovieDetail") as! MovieDetailVC
+        detailVC.movieId = selectedMovie!
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+
+
 
 
