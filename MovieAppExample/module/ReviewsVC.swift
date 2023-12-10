@@ -22,7 +22,7 @@ class ReviewsVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "ReviewsCell", bundle: nil), forCellWithReuseIdentifier: ReviewsCell.identifier)
-        collectionView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        collectionView.contentInset = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
         view.backgroundColor = UIColor.systemGray4
         navigationController?.navigationBar.barTintColor = UIColor.systemGray
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -80,7 +80,7 @@ extension ReviewsVC: UICollectionViewDataSource {
 extension ReviewsVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let review = reviews[indexPath.row]
-        let width = UIScreen.main.bounds.width - 32
+        let width = UIScreen.main.bounds.width - 16
         let height = 40 + sizeOfString(string: review.content ?? "", constrainedToWidth: width).height
         return CGSize(width: width, height: height)
     }
@@ -90,7 +90,7 @@ extension ReviewsVC: UICollectionViewDelegateFlowLayout {
 //    }
 //
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        return 8
     }
     
     func sizeOfString (string: String, constrainedToWidth width: Double) -> CGSize {

@@ -12,11 +12,18 @@ class MovieListVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     private let networkManager = NetworkManager()
     private var movies: [Movie] = []
+    private var filteredMovies: [Movie] = []
+    private var isSearching: Bool = false
+    lazy var searhBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search Movies"
+        return searchBar
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        searchBar()
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MovieListCell", bundle: nil), forCellWithReuseIdentifier: MovieListCell.identifier)
@@ -37,16 +44,31 @@ class MovieListVC: UIViewController {
             }
         }
     }
+    
+    private func searchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+    }
 }
 
 extension MovieListVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        if isSearching {
+            return filteredMovies.count
+        } else {
+            return movies.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListCell.identifier, for: indexPath) as! MovieListCell
-        let movie = movies[indexPath.row]
+        let movie: Movie
+        if isSearching {
+            movie = filteredMovies[indexPath.row]
+        } else {
+            movie = movies[indexPath.row]
+        }
         cell.configure(movie: movie)
         return cell
     }
@@ -70,6 +92,19 @@ extension MovieListVC: UICollectionViewDelegate {
         let detailVC = storyboard?.instantiateViewController(withIdentifier: "MovieDetail") as! MovieDetailVC
         detailVC.movieId = selectedMovie!
         navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+extension MovieListVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if searchController.searchBar.text?.isEmpty ?? true {
+            filteredMovies.removeAll()
+            isSearching = false
+        } else {
+            isSearching = true
+            filteredMovies = movies.filter { $0.title!.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "") }
+        }
+        collectionView.reloadData()
     }
 }
 

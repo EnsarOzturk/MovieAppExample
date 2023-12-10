@@ -26,9 +26,10 @@ class ReviewsCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundColor = UIColor.systemGray6
-        layer.cornerRadius = 2
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.systemGray2.cgColor
+        backgroundColor = UIColor.lightGray.withAlphaComponent(2)
+        layer.cornerRadius = 8
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.lightGray.cgColor
+        
     }
 }
