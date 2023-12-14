@@ -34,6 +34,8 @@
 		FCB237B42B212F4A008484EE /* ReviewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB237B32B212F4A008484EE /* ReviewsVC.swift */; };
 		FCB237BB2B2344E1008484EE /* ReviewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB237B92B2344E1008484EE /* ReviewsCell.swift */; };
 		FCB237BC2B2344E1008484EE /* ReviewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCB237BA2B2344E1008484EE /* ReviewsCell.xib */; };
+		FCB237C02B25F22F008484EE /* BigCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB237BE2B25F22F008484EE /* BigCardCell.swift */; };
+		FCB237C12B25F22F008484EE /* BigCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCB237BF2B25F22F008484EE /* BigCardCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,8 @@
 		FCB237B32B212F4A008484EE /* ReviewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsVC.swift; sourceTree = "<group>"; };
 		FCB237B92B2344E1008484EE /* ReviewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsCell.swift; sourceTree = "<group>"; };
 		FCB237BA2B2344E1008484EE /* ReviewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsCell.xib; sourceTree = "<group>"; };
+		FCB237BE2B25F22F008484EE /* BigCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCardCell.swift; sourceTree = "<group>"; };
+		FCB237BF2B25F22F008484EE /* BigCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BigCardCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +106,6 @@
 			children = (
 				FCB237BD2B248354008484EE /* ReviewsCell */,
 				FC3F2C6F2B18AC3B003BF18F /* MovieListCell */,
-				FC3F2C6D2B18AC21003BF18F /* MovieListVC.swift */,
-				FC3F2C782B18CB93003BF18F /* MovieDetailVC.swift */,
-				FCB237B32B212F4A008484EE /* ReviewsVC.swift */,
 			);
 			path = module;
 			sourceTree = "<group>";
@@ -114,6 +115,8 @@
 			children = (
 				FC3F2C702B18AC82003BF18F /* MovieListCell.swift */,
 				FC3F2C712B18AC82003BF18F /* MovieListCell.xib */,
+				FCB237BE2B25F22F008484EE /* BigCardCell.swift */,
+				FCB237BF2B25F22F008484EE /* BigCardCell.xib */,
 			);
 			path = MovieListCell;
 			sourceTree = "<group>";
@@ -137,13 +140,14 @@
 		FC8521612A3E034B00033940 /* MovieAppExample */ = {
 			isa = PBXGroup;
 			children = (
+				FCB237C42B29ADBF008484EE /* Resources */,
+				FCB237C22B29ABB4008484EE /* Controllers */,
 				FC3F2C6B2B18ABCF003BF18F /* module */,
 				FC3F2C652B18961D003BF18F /* Utils */,
 				FC8521792A3E191200033940 /* Api */,
 				FC8521622A3E034B00033940 /* AppDelegate.swift */,
 				FC8521642A3E034B00033940 /* SceneDelegate.swift */,
 				FC8521682A3E034B00033940 /* Main.storyboard */,
-				FC85216B2A3E034C00033940 /* Assets.xcassets */,
 				FC85216D2A3E034C00033940 /* LaunchScreen.storyboard */,
 				FC8521702A3E034C00033940 /* Info.plist */,
 			);
@@ -153,7 +157,7 @@
 		FC8521792A3E191200033940 /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				FC85217A2A3E195400033940 /* NetworkManager.swift */,
+				FCB237C32B29ABDD008484EE /* Service */,
 				FC8521EB2A405AF200033940 /* EndpointItems */,
 				FC85217E2A3E1D5D00033940 /* Models */,
 			);
@@ -191,6 +195,32 @@
 				FCB237BA2B2344E1008484EE /* ReviewsCell.xib */,
 			);
 			path = ReviewsCell;
+			sourceTree = "<group>";
+		};
+		FCB237C22B29ABB4008484EE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FC3F2C6D2B18AC21003BF18F /* MovieListVC.swift */,
+				FC3F2C782B18CB93003BF18F /* MovieDetailVC.swift */,
+				FCB237B32B212F4A008484EE /* ReviewsVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FCB237C32B29ABDD008484EE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				FC85217A2A3E195400033940 /* NetworkManager.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		FCB237C42B29ADBF008484EE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FC85216B2A3E034C00033940 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +289,7 @@
 			files = (
 				FCB237BC2B2344E1008484EE /* ReviewsCell.xib in Resources */,
 				FC85216F2A3E034C00033940 /* LaunchScreen.storyboard in Resources */,
+				FCB237C12B25F22F008484EE /* BigCardCell.xib in Resources */,
 				FC85216C2A3E034C00033940 /* Assets.xcassets in Resources */,
 				FC3F2C732B18AC82003BF18F /* MovieListCell.xib in Resources */,
 				FC85216A2A3E034B00033940 /* Main.storyboard in Resources */,
@@ -272,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCB237C02B25F22F008484EE /* BigCardCell.swift in Sources */,
 				FC3F2C682B18963A003BF18F /* Data+Extension.swift in Sources */,
 				FC3F2C7B2B18D522003BF18F /* MovieDetailResponse.swift in Sources */,
 				FC3F2C6A2B1896EA003BF18F /* URLRequest+Extension.swift in Sources */,

@@ -37,7 +37,14 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rJt-Fh-CAL" secondAttribute="bottom" id="bib-0x-QaK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="whO-Sa-rIS"/>
+                    <navigationItem key="navigationItem" id="whO-Sa-rIS">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="rectangle.split.2x2.fill" catalog="system" id="wJh-l4-6r1">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="viewStyleButtonTapped:" destination="BYZ-38-t0r" id="sxC-3H-zDO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="rJt-Fh-CAL" id="Y3c-9R-BUE"/>
                     </connections>
@@ -270,6 +277,7 @@
     </scenes>
     <resources>
         <image name="ellipsis.bubble" catalog="system" width="128" height="110"/>
+        <image name="rectangle.split.2x2.fill" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

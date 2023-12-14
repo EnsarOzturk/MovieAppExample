@@ -9,11 +9,10 @@ import UIKit
 
 class ReviewsVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
-    
     private let networkManager = NetworkManager()
     private var reviews: [Review] = []
+    private var movieTitle: String = ""
     var reviewsID: Int = 0
-    var movieTitle: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +28,7 @@ class ReviewsVC: UIViewController {
   
     }
 
-    func fetchReviews() {
+    private func fetchReviews() {
         let reviewsItem = ReviewsEndpointItem(movieId: reviewsID)
         networkManager.request(type: ReviewsResponse.self, item: reviewsItem) { response in
             switch response {
@@ -84,11 +83,7 @@ extension ReviewsVC: UICollectionViewDelegateFlowLayout {
         let height = 40 + sizeOfString(string: review.content ?? "", constrainedToWidth: width).height
         return CGSize(width: width, height: height)
     }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 6)
-//    }
-//
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }

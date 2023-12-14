@@ -8,7 +8,6 @@
 import UIKit
 
 class MovieDetailVC: UIViewController {
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
@@ -18,18 +17,17 @@ class MovieDetailVC: UIViewController {
     @IBOutlet weak var reviewsButton: UIButton!
     @IBOutlet weak var durationLabel: UILabel!
     
+    
     var movieDetails: MovieDetailResponse?
     private let networkManager = NetworkManager()
     var movieId: Int = 0
-    var voteAvarage: Int = 0
-    var imageBaseUrl = "https://image.tmdb.org/t/p/w500"
+    private var voteAvarage: Int = 0
+    private var imageBaseUrl = "https://image.tmdb.org/t/p/w500"
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        navigationController?.navigationBar.tintColor = .white
         let movieDetailItem = MovieDetailEndpointItem(movieId: movieId)
         networkManager.request(type: MovieDetailResponse.self, item: movieDetailItem) { response in
             switch response {
@@ -51,8 +49,11 @@ class MovieDetailVC: UIViewController {
                 print(error)
             }
         }
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
+   
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -60,11 +61,7 @@ class MovieDetailVC: UIViewController {
         imageView.layer.cornerRadius = 4
         shareButton.tintColor = .white
         shareButton.addTarget(self, action: #selector(shareSheet(_:)), for: .touchUpInside)
-//        reviewsButton.addTarget(self, action: #selector(reviews(_ :)), for: .touchUpInside)
-        
-        
     }
-    
     
     @objc private func shareSheet(_ sender: UIButton){
         guard let targetUrl = URL(string: "https://www.themoviedb.org/movie/\(movieId)") else { return }
