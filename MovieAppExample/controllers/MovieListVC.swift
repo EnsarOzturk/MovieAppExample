@@ -21,14 +21,14 @@ final class MovieListVC: UIViewController {
         fetchMovies()
         contentInset()
     }
-
+    
     private func searchBar() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false // Search bar'ın scroll ederken saklanmaması için
+        navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.placeholder = "Search Movies"
-        searchController.definesPresentationContext = true // Bu özelliği true olarak ayarlayın
+        searchController.definesPresentationContext = true
     }
     
     private func setupCollectionView() {
@@ -53,16 +53,18 @@ final class MovieListVC: UIViewController {
         viewModel.toggleViewStyle()
         collectionView.reloadData()
     }
-}
-
+    
+    
     private func contentInset() {
         switch viewModel.viewStyle {
         case .small:
-         collectionView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+            collectionView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         case .big:
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
     }
 }
+
 
 extension MovieListVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

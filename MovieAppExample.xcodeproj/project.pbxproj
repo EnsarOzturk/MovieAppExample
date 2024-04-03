@@ -156,11 +156,11 @@
 		FC8521612A3E034B00033940 /* MovieAppExample */ = {
 			isa = PBXGroup;
 			children = (
-				FC1EB26D2BBBE5B500A7DDBC /* model */,
-				FCB237C42B29ADBF008484EE /* resources */,
+				FC3F2C652B18961D003BF18F /* utils */,
 				FCB237C22B29ABB4008484EE /* controllers */,
 				FC3F2C6B2B18ABCF003BF18F /* module */,
-				FC3F2C652B18961D003BF18F /* utils */,
+				FC1EB26D2BBBE5B500A7DDBC /* model */,
+				FCB237C42B29ADBF008484EE /* resources */,
 				FC8521792A3E191200033940 /* api */,
 				FC8521622A3E034B00033940 /* AppDelegate.swift */,
 				FC8521642A3E034B00033940 /* SceneDelegate.swift */,

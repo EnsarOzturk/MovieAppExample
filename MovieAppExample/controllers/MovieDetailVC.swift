@@ -17,70 +17,57 @@ class MovieDetailVC: UIViewController {
     @IBOutlet weak var reviewsButton: UIButton!
     @IBOutlet weak var durationLabel: UILabel!
     
-    
-    var movieDetails: MovieDetailResponse?
-    private let networkManager = NetworkManager()
+    private var viewModel: MovieDetailViewModel!
     var movieId: Int = 0
-    private var voteAvarage: Int = 0
-    private var imageBaseUrl = "https://image.tmdb.org/t/p/w500"
-
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let movieDetailItem = MovieDetailEndpointItem(movieId: movieId)
-        networkManager.request(type: MovieDetailResponse.self, item: movieDetailItem) { response in
-            switch response {
-            case .success(let movieDetail):
-                self.movieDetails = movieDetail
-                if let backdropPath = movieDetail.backdropPath {
-                    let imageUrl = self.imageBaseUrl + backdropPath
-                    self.imageView.load(url: imageUrl)
-                }
-                
-                self.imageView.load(url: self.movieDetails?.backdropPath ?? "")
-                self.nameLabel.text = self.movieDetails?.originalTitle
-                self.releaseLabel.text = self.movieDetails?.releaseDate
-                self.voteLabel.text = String((self.movieDetails?.voteAverage ?? 0))
-                self.overviewLabel.text = self.movieDetails?.overview
-                self.durationLabel.text = String((self.movieDetails?.voteCount ?? 0))
-                
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            viewModel = MovieDetailViewModel(networkManager: NetworkManager())
+            viewModel.movieId = movieId
+            bindViewModel()
+        }
+        
+    private func bindViewModel() {
+        viewModel.fetchMovieDetails { [weak self] result in
+            switch result {
+            case .success:
+                self?.updateUI()
             case .failure(let error):
-                print(error)
+                print("Error fetching movie details: \(error)")
             }
         }
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = true
-   
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         
-        view.backgroundColor = .black
-        imageView.layer.cornerRadius = 4
-        shareButton.tintColor = .white
-        shareButton.addTarget(self, action: #selector(shareSheet(_:)), for: .touchUpInside)
+    private func updateUI() {
+        if let imageUrl = viewModel.backdropImageUrl {
+            imageView.load(url: imageUrl.absoluteString)
+        }
+        nameLabel.text = viewModel.originalTitle
+        releaseLabel.text = viewModel.releaseDate
+        voteLabel.text = viewModel.voteAverage
+        overviewLabel.text = viewModel.overview
+        durationLabel.text = viewModel.voteCount
     }
     
-    @objc private func shareSheet(_ sender: UIButton){
-        guard let targetUrl = URL(string: "https://www.themoviedb.org/movie/\(movieId)") else { return }
+    @IBAction func goToReviews(_ sender: Any) {
+        performSegue(withIdentifier: "reviewsVC", sender: self)
+
+    }
+    
+    @objc private func shareSheet(_ sender: UIButton) {
+        guard let targetUrl = URL(string: "https://www.themoviedb.org/movie/\(movieId)")?.absoluteString else { return }
         let shareSheet = UIActivityViewController(activityItems: [targetUrl], applicationActivities: nil)
         shareSheet.popoverPresentationController?.sourceView = sender
         shareSheet.popoverPresentationController?.sourceRect = sender.frame
         present(shareSheet, animated: true)
     }
     
-    @IBAction func goToReviews(_ sender: Any) {
-        performSegue(withIdentifier: "reviewsVC", sender: self)
-        
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "reviewsVC" {
             if let reviewsVC = segue.destination as? ReviewsVC {
-                reviewsVC.reviewsID = movieDetails?.id ?? 0
+                reviewsVC.reviewsID = movieId
             }
         }
     }
 }
-
