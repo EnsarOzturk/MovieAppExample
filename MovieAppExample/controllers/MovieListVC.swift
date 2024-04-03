@@ -52,6 +52,12 @@ final class MovieListVC: UIViewController {
     @IBAction func viewStyleButtonTapped(_ sender: UIBarButtonItem) {
         viewModel.toggleViewStyle()
         collectionView.reloadData()
+        
+        if viewModel.viewStyle == .small {
+               sender.image = UIImage(systemName: "rectangle.split.1x2.fill")
+           } else {
+               sender.image = UIImage(systemName: "rectangle.split.2x2.fill")
+        }
     }
     
     
