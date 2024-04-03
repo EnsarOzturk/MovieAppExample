@@ -44,8 +44,8 @@ class BigCardCell: UICollectionViewCell {
         
         nameLabel.textColor = .white
         nameLabel.layer.shadowColor = UIColor.white.cgColor
-        nameLabel.layer.shadowRadius = 3.0
-        nameLabel.layer.shadowOpacity = 1.0
+        nameLabel.layer.shadowRadius = 0.1
+        nameLabel.layer.shadowOpacity = 0.2
         nameLabel.layer.shadowOffset = CGSize(width: 4, height: 4)
         nameLabel.layer.masksToBounds = false
     }
