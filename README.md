@@ -15,5 +15,5 @@ This application is a movies app developed using the Swift programming language.
 
 #
 
-## About Author
+## 👤 About Author
 Ensar Öztürk, [ozturkkensar@gmail.com](mailto:ozturkkensar@gmail.com)
