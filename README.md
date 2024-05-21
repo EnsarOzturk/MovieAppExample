@@ -10,7 +10,7 @@ This application is a movies app developed using the Swift programming language.
 <img src="https://github.com/EnsarOzturk/MovieAppExample/blob/mvvm/Screenshots/ListBig.png" width="200" />
 </p>
 
-## Libraries
+## 📖 Libraries
 - [Alamofire](https://github.com/Alamofire/Alamofire)
 
 #
