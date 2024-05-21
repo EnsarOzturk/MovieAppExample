@@ -1,7 +1,7 @@
-# MovieAppExample (using MVC, MVVM)
+# 🍿 MovieAppExample (using MVC, MVVM)
 This application is a movies app developed using the Swift programming language. Users can browse movies using different cards, search for movies by their titles, access movie descriptions, ratings, and user reviews.
 
-# Preview
+# 🔎 Preview
 <p float="left">
 <img src="https://github.com/EnsarOzturk/MovieAppExample/blob/mvvm/Screenshots/ListSmall.png" width="200" />
 <img src="https://github.com/EnsarOzturk/MovieAppExample/blob/mvvm/Screenshots/Searching.png" width="200" /> 
